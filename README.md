@@ -1,6 +1,3 @@
 # cobalt
 
-.env
-
-GH_BASIC_CLIENT_ID=
-GH_BASIC_SECRET_ID=
+https://developer.github.com/v3/guides/basics-of-authentication/
