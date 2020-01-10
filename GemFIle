@@ -1,0 +1,4 @@
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'sinatra'
+gem 'rest-client'
+gem 'json'
