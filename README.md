@@ -1,0 +1,6 @@
+# cobalt
+
+.env
+
+GH_BASIC_CLIENT_ID=
+GH_BASIC_SECRET_ID=
