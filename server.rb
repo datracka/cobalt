@@ -39,22 +39,45 @@ get '/so_callback' do
   session_code = request.env['rack.request.query_hash']['code']
   print session_code
 
+  params = "client_id=#{SO_CLIENT_ID}&client_secret=#{SO_SECRET}&redirect_uri=http://localhost:4567/so_request"
 
-  payload = { 
-    :client_id => SO_CLIENT_ID,
-    :client_secret => SO_SECRET,
-    :redirect_uri => "localhost:4567"
-  }
+  base_url = 'https://stackoverflow.com/oauth'
+  url = "#{base_url}?#{params}"
+  redirect url
+end
 
-  url = 'https://stackoverflow.com/oauth/access_token'
-  result = rest_client_post_request(url, payload)
-  # extract the token and granted scopes
-  access_token = result.second['access_token']
+get '/so_request' do
+  #do a request
+end
 
-  print '#######'
-  print JSON.parse(result)
-  print access_token
-  print '#######'
+def rest_client_get_request(url, payload, access_token: nil)
+  begin
+    RestClient.log = 'stdout'
+    headers = { :accept => :json, content_type: :json }
+
+    unless access_token.nil?
+      headers[:authorization] = "Bearer #{access_token}" 
+    end
+
+    json_obj = JSON.generate(payload)
+    response = RestClient::Request.new({
+      method: :get,
+      url: url,
+      headers: headers
+    }).execute do |response, request, result|
+      case response.code
+      when 400
+        [ :error, JSON.parse(response.to_str) ]
+      when 200
+        [ :success, JSON.parse(response.to_str) ]
+      else
+        fail "Invalid response #{response.to_str} received."
+      end
+    end
+  rescue RestClient::Exception => e
+    Rails.logger.error("error: #{e.message} response: #{e.response}")
+    add_error("error: #{e.message} response: #{e.response}")
+  end
 end
 
 def rest_client_post_request(url, payload, access_token: nil)
@@ -72,7 +95,7 @@ def rest_client_post_request(url, payload, access_token: nil)
       method: :post,
       url: url,
       payload: json_obj,
-      headers: { :accept => :json, content_type: :json }
+      headers: headers
     }).execute do |response, request, result|
       case response.code
       when 400
