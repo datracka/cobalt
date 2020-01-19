@@ -47,7 +47,17 @@ get '/so_callback' do
 end
 
 get '/so_request' do
-  #do a request
+  payload = { 
+    :client_id => SO_CLIENT_ID,
+    :client_secret => SO_SECRET,
+    :redirect_uri => "http://localhost:4567/so_request",
+    :code => params['code']
+  }
+  result = rest_client_post_request('https://stackoverflow.com/oauth/access_token', payload)
+
+  print '#######'
+  print result.to_s
+  print '#######'
 end
 
 def rest_client_get_request(url, payload, access_token: nil)
@@ -99,9 +109,9 @@ def rest_client_post_request(url, payload, access_token: nil)
     }).execute do |response, request, result|
       case response.code
       when 400
-        [ :error, JSON.parse(response.to_str) ]
+        [ :error, response.to_str ]
       when 200
-        [ :success, JSON.parse(response.to_str) ]
+        [ :success, response.to_str ]
       else
         fail "Invalid response #{response.to_str} received."
       end
