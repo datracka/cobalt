@@ -14,4 +14,8 @@
 
 ### Stackoverflow
 
+Register your app https://stackapps.com/apps/oauth/register
+
+oAuth: localhost
+
 - https://stackapps.com/apps/oauth/view/17036
