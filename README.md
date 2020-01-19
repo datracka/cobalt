@@ -2,7 +2,6 @@
 
 ## to start app
 
-- add `digitalents-cobalt.local to `/etc/host` file `127.0.0.1  digitalents-cobalt.local`
 - run `"$ bundle"`
 - run `"$ ruby server.rb"`
 
@@ -17,5 +16,6 @@
 Register your app https://stackapps.com/apps/oauth/register
 
 oAuth: localhost
+domain: localhost:4567
 
-- https://stackapps.com/apps/oauth/view/17036
+(my app, only for @datracka https://stackapps.com/apps/oauth/view/17036)
