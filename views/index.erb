@@ -3,11 +3,15 @@
   </head>
   <body>
     <p>
-      Well, hello there!
+      Hello there2!
     </p>
     <p>
-      We're going to now talk to the GitHub API. Ready?
-      <a href="https://github.com/login/oauth/authorize?scope=user:email&client_id=<%= client_id %>">Click here</a> to begin!</a>
+      Get GitHub API code
+      <a href="https://github.com/login/oauth/authorize?scope=user:email&client_id=<%= github_client_id %>">Click here</a> to begin!</a>
+    </p>
+    <p>
+      Get StackOverflow API code
+      <a href="https://stackoverflow.com/oauth/?scope=no_expiry&redirect_uri=http://digitalents-cobalt.local:4567/so_callback&client_id=<%= so_client_id %>">Click here</a> to begin!</a>
     </p>
     <p>
       If that link doesn't work, remember to provide your own <a href="/apps/building-oauth-apps/authorizing-oauth-apps/">Client ID</a>!

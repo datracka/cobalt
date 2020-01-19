@@ -2,10 +2,16 @@
 
 ## to start app
 
-run `"$ bundle"`
-
-run `"$ ruby server.rb"`
+- add `digitalents-cobalt.local to `/etc/host` file `127.0.0.1  digitalents-cobalt.local`
+- run `"$ bundle"`
+- run `"$ ruby server.rb"`
 
 ## based
 
-https://developer.github.com/v3/guides/basics-of-authentication/
+### Github
+
+- https://developer.github.com/v3/guides/basics-of-authentication/
+
+### Stackoverflow
+
+- https://stackapps.com/apps/oauth/view/17036

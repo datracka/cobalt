@@ -1,4 +1,5 @@
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'sinatra'
+gem 'sinatra-reloader'
 gem 'rest-client'
 gem 'json'
